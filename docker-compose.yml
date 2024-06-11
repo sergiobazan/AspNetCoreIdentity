@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  aspnetcoreidentity.api:
+    image: ${DOCKER_REGISTRY-}aspnetcoreidentityapi
+    build:
+      context: .
+      dockerfile: AspNetCoreIdentity.API/Dockerfile
+
+  entity.db:
+    image: postgres
+    container_name: entity.db
+    environment:
+        - POSTGRES_DB=entity
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=password
+    ports:
+        - 5432:5432
